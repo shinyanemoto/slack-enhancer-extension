@@ -1,0 +1,30 @@
+{
+    "manifest_version": 3,
+    "name": "Slack Enhancer",
+    "version": "1.0",
+    "description": "Highlights replies and replaces Atlassian URLs with page titles in Slack.",
+    "permissions": [
+        "activeTab",
+        "scripting"
+    ],
+    "host_permissions": [
+        "https://app.slack.com/*",
+        "<all_urls>"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://app.slack.com/*"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "css": [
+                "styles.css"
+            ]
+        }
+    ]
+}
