@@ -9,13 +9,14 @@
 
 .slack-enhancer-reply-highlight {
     background-color: #FFEBEE !important;
-    border: 2px solid #FF5252 !important;
     border-radius: 4px !important;
-    color: #D50000 !important;
-    font-weight: bold !important;
-    padding: 2px 6px !important;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
-    transition: all 0.2s ease-in-out !important;
+    box-shadow: 0 0 0 2px #FF5252 inset !important;
+    color: inherit !important;
+    font-size: inherit !important;
+    font-weight: inherit !important;
+    line-height: inherit !important;
+    text-decoration: inherit !important;
+    transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out !important;
 }
 
 .slack-enhancer-reply-highlight:hover {
