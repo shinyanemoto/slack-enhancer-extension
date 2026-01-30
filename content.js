@@ -78,9 +78,30 @@ function highlightreplies(rootNode) {
 }
 
 function applyHighlight(element) {
+    if (!isInThreadPane(element)) {
+        return;
+    }
     if (!element.classList.contains('slack-enhancer-reply-highlight')) {
         element.classList.add('slack-enhancer-reply-highlight');
     }
+}
+
+function isInThreadPane(element) {
+    const threadPaneSelectors = [
+        '[data-qa="thread_panel"]',
+        '[data-qa="thread_view"]',
+        '[data-qa="thread"]',
+        '#threads_view',
+        '.p-threads_view',
+        '.p-threads',
+        '.p-threads__view',
+        '.c-threads',
+        '.c-threads_container',
+        '.c-threads_section',
+        '.c-thread_pane'
+    ];
+
+    return Boolean(element.closest(threadPaneSelectors.join(', ')));
 }
 
 function replaceAtlassianLinks(rootNode) {
