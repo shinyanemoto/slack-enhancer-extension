@@ -16,10 +16,4 @@
     font-weight: inherit !important;
     line-height: inherit !important;
     text-decoration: inherit !important;
-    transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out !important;
-}
-
-.slack-enhancer-reply-highlight:hover {
-    transform: scale(1.05);
-    background-color: #FFCDD2 !important;
 }
