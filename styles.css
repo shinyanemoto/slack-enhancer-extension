@@ -8,12 +8,6 @@
 */
 
 .slack-enhancer-reply-highlight {
-    background-color: #FFEBEE !important;
-    border-radius: 4px !important;
-    box-shadow: 0 0 0 2px #FF5252 inset !important;
-    color: inherit !important;
-    font-size: inherit !important;
-    font-weight: inherit !important;
-    line-height: inherit !important;
-    text-decoration: inherit !important;
+    color: #d72b3f !important;
+    font-weight: 600 !important;
 }

@@ -53,55 +53,26 @@ function highlightreplies(rootNode) {
     const replyElements = rootNode.querySelectorAll(selector);
 
     replyElements.forEach(el => {
-        // Verify it's not the main message input or something else
-        const text = el.textContent || "";
-
-        // Check for numbers match
-        const hasNumber = /\d/.test(text);
-
-        // Specific check for "Other replies" (その他の返信)
-        const isOtherReplies = text.includes("その他の返信") || text.includes("other replies");
-
-        if (hasNumber || isOtherReplies) {
+        const text = (el.textContent || "").trim();
+        if (isReplyCountText(text)) {
             applyHighlight(el);
         }
     });
+}
 
-    // 3. Text content fallback (for "Other replies" that might not match above selectors)
-    // This is more expensive, so we scope it carefully if possible, or just scan buttons.
-    const buttons = rootNode.querySelectorAll('button, div[role="button"]');
-    buttons.forEach(btn => {
-        if (btn.textContent.includes("その他の返信") || btn.textContent.includes("other replies")) {
-            applyHighlight(btn);
-        }
-    });
+function isReplyCountText(text) {
+    const match = text.match(/^(\d+)\s*件の返信$/);
+    if (!match) {
+        return false;
+    }
+    const count = Number.parseInt(match[1], 10);
+    return Number.isFinite(count) && count > 0;
 }
 
 function applyHighlight(element) {
-    if (!isInThreadPane(element)) {
-        return;
-    }
     if (!element.classList.contains('slack-enhancer-reply-highlight')) {
         element.classList.add('slack-enhancer-reply-highlight');
     }
-}
-
-function isInThreadPane(element) {
-    const threadPaneSelectors = [
-        '[data-qa="thread_panel"]',
-        '[data-qa="thread_view"]',
-        '[data-qa="thread"]',
-        '#threads_view',
-        '.p-threads_view',
-        '.p-threads',
-        '.p-threads__view',
-        '.c-threads',
-        '.c-threads_container',
-        '.c-threads_section',
-        '.c-thread_pane'
-    ];
-
-    return Boolean(element.closest(threadPaneSelectors.join(', ')));
 }
 
 function replaceAtlassianLinks(rootNode) {
